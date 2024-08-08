@@ -1,0 +1,13 @@
+---
+
+- name: Display Distribution
+  hosts: host2
+  tasks:
+
+    - template: copy file.html.j2
+      copy:
+        src: file.html.j2
+        dest: ~/
+    
+
+
