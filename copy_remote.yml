@@ -1,0 +1,18 @@
+---
+
+- name: Copy Remote
+  hosts: host2
+  vars_files:
+    - my_secrets.yml 
+  become: yes
+  tasks:
+
+    - name: copy index.html.j2
+      copy:
+        src: /etc/os-release
+        dest: /tmp
+        remote_src: yes
+
+    
+
+
