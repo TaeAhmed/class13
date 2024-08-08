@@ -1,0 +1,7 @@
+name,id,shell
+user1,1001,/bin/bash
+user2,1002,/bin/bash
+user3,1003,/bin/bash
+user4,1004,/bin/bash
+user5,1005,/bin/bash
+

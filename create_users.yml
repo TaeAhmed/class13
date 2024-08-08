@@ -1,0 +1,24 @@
+---
+
+- name: Create Users
+  hosts: host2
+  vars_files:
+    - my_secrets.yml 
+  become: yes
+  tasks:
+
+    - name: Read users from CSV
+      community.general.read_csv:
+        path: vars/users.csv
+        delimiter: ','
+      register: users
+      delegate_to: localhost  
+
+    - name: Create user
+      loop: "{{ users.list }}"  
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.id }}"
+        shell: "{{ item.shell }}"
+        state: present
+      
