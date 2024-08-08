@@ -4,8 +4,8 @@
   hosts: host2
   tasks:
 
-    - template: copy file.html.j2
-      copy:
+    - name: Display Distribution  
+      template: 
         src: file.html.j2
         dest: ~/
     
