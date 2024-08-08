@@ -1,0 +1,25 @@
+---
+
+- name: Display FQDN
+  hosts: host2
+  vars_files:
+    - my_secrets.yml 
+  become: yes
+  tasks:
+    - name: Gather FQDN
+      set_fact:
+        fqdn: "{{ ansible_fqdn }}"  
+
+    - name: copy index.html.j2
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+      notify: Restart Apache after site change
+
+  handlers:
+    - name: Restart Apache after site change
+      service:
+        name: apache2
+        state: restarted      
+
+
